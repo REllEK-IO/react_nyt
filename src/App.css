@@ -1,24 +1,28 @@
-.App {
-  text-align: center;
+body{
+	font-family: 'Roboto Condensed', sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+h1,h2,h3,h4{
+	font-family: 'Playfair Display', serif;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.navbar-logo {
+	width: 400px;
 }
 
-.App-intro {
-  font-size: large;
+.center-block {
+	margin: 0 auto;
+	display: block;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.jumbotron{
+	padding: 2rem;
+}
+
+#search-header{
+	margin-bottom: 2rem;
+}
+
+.fancy {
+  box-shadow: inset -5px -5px 8px palegreen;
 }
