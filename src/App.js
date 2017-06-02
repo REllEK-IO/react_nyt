@@ -9,27 +9,39 @@ import Navbar from "./components/Navbar";
 import Search from "./components/Search";
 import Results from "./components/Results";
 
+var Promise = require("bluebird");
+
+var mongoose = require("mongoose");
+
+mongoose.Promise = Promise;
+
+mongoose.connect("mongodb://localhost/nyt_db");
+var db = mongoose.connection;
+db.on("error", function (error) {
+	console.log("Mongoose Error: ", error);
+});
+
 const App = () => (
   <Router>
-    <Switch>
-        <Route exact path="/" children={() => 
-          <div>
-            <Navbar />
-            <br />
-            <Search />
-          </div>
-        }/>
-        <Route path="/result" children={() => 
-          <div>
-            <Navbar />
-            <br />
-            <Search />
-            <br />
-            <Results />
-          </div>
-        }/>
-      </Switch>
-    </Router>
+  <Switch>
+      <Route exact path="/" children={() => 
+        <div>
+          <Navbar />
+          <br />
+          <Search />
+        </div>
+      }/>
+      <Route path="/result" children={() => 
+        <div>
+          <Navbar />
+          <br />
+          <Search />
+          <br />
+          <Results />
+        </div>
+      }/>
+    </Switch>
+  </Router>
 );
 
 export default App;
