@@ -26,6 +26,8 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = Promise;
 
+console.log("run");
+
 // mongoose.connect("mongodb://localhost/nyt_db");
 // var db = mongoose.connection;
 // db.on("error", function (error) {
