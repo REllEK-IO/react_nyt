@@ -26,11 +26,11 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = Promise;
 
-mongoose.connect("mongodb://localhost/nyt_db");
-var db = mongoose.connection;
-db.on("error", function (error) {
-	console.log("Mongoose Error: ", error);
-});
+// mongoose.connect("mongodb://localhost/nyt_db");
+// var db = mongoose.connection;
+// db.on("error", function (error) {
+// 	console.log("Mongoose Error: ", error);
+// });
 
 const PORT = 3001;
 
