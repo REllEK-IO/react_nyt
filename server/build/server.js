@@ -47,7 +47,7 @@ console.log("run");
 // 	console.log("Mongoose Error: ", error);
 // });
 
-var PORT = 3001;
+var PORT = process.env.PORT || 3001;
 
 app.listen(PORT, function () {
   console.log('Listening on ' + PORT);
