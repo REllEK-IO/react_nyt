@@ -1,6 +1,6 @@
-import bodyParser from 'body-parser'
-import express from 'express'
-import path from 'path'
+var bodyParser = require('body-parser');
+var express = require('express');
+var path = require('path');
 const app = express()
 
 app.use(bodyParser.json())
@@ -26,13 +26,21 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = Promise;
 
-console.log("run");
+var options = {
+  db: { native_parser: true },
+  server: { poolSize: 5 },
+  replset: { rs_name: 'myReplicaSetName' }
+}
 
-// mongoose.connect("mongodb://localhost/nyt_db");
-// var db = mongoose.connection;
-// db.on("error", function (error) {
-// 	console.log("Mongoose Error: ", error);
-// });
+options.server.socketOptions = options.replset.socketOptions = { keepAlive: 120 };
+
+mongoose.connect("mongodb://mtkeller:mew123@ds161121.mlab.com:61121/heroku_xn5tflf2", options);
+var db = mongoose.connection;
+db.on("error", function (error) {
+	console.log("Mongoose Error: ", error);
+});
+
+require("./controllers/api-routes")(app);
 
 const PORT = process.env.PORT || 3001;
 

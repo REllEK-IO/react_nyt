@@ -8,28 +8,52 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
 import Results from "./components/Results";
+import Saved from "./components/Saved";
 
-const App = () => (
-  <Router>
-  <Switch>
-      <Route exact path="/" children={() => 
-        <div>
-          <Navbar />
-          <br />
-          <Search />
-        </div>
-      }/>
-      <Route path="/result" children={() => 
-        <div>
-          <Navbar />
-          <br />
-          <Search />
-          <br />
-          <Results />
-        </div>
-      }/>
-    </Switch>
-  </Router>
-);
+import Articles from "./components/utils/articlesHelper";
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {"savedArray" : true};
+  }
+  getSavedArticles(){
+    //Get saved articles code
+    Articles.get((res) =>{
+      return (
+        <Saved savedArray={res} />
+      );
+    })
+  }
+
+  render(){
+    return(
+      <Router>
+      <Switch>
+          <Route exact path="/" children={() => 
+            <div>
+              <Navbar />
+              <br />
+              <Search />
+              <br />
+              {this.getSavedArticles()}
+            </div>
+          }/>
+          <Route path="/result" children={() => 
+            <div>
+              <Navbar />
+              <br />
+              <Search />
+              <br />
+              <Results />
+              <br />
+              <Saved savedArray={this.state.savedArray}/>
+            </div>
+          }/>
+        </Switch>
+      </Router>
+    );
+  }
+}
 
 export default App;
